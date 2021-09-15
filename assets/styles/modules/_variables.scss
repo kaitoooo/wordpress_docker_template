@@ -1,0 +1,26 @@
+// Sizes
+$pc-base-size: 1920;
+$sp-base-size: 750;
+
+$min-vw: 769px;
+$max-vw: 1920px;
+
+// Breakpoints
+$break-point-1660px: 1660px;
+$break-point-1280px: 1280px;
+$break-point-tablet: 1024px;
+$break-point-sp: 768px;
+
+// Font
+$font-all: 'Noto Sans JP', sans-serif;
+
+// Colors
+$color-black: #000;
+$color-white: #fff;
+
+// z-index
+
+// CSS Variables
+:root {
+	--base-size: #{$pc-base-size};
+}

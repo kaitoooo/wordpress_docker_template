@@ -1,0 +1,5 @@
+src/.htaccess
+src/.htpasswd
+src/wp-content/uploads/
+src/wp-content/upgrade/
+assets/node_modules/

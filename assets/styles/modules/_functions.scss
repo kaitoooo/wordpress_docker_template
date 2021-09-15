@@ -1,0 +1,50 @@
+// // vwの取得($size:表示したいpxを指定、$pc-base-size:variable.scssに指定)
+
+@function get_vw($size, $viewport: var(--base-size)) {
+	$rate: 100 / $viewport;
+	@return calc(#{$rate} * #{$size} * 1vw);
+}
+
+// vwの取得($size:表示したいpxを指定、$pc-base-size:variable.scssに指定)
+@function get_vw_sp($size, $viewport: $sp-base-size) {
+	$rate: 100 / $viewport;
+	@return $rate * $size * 1vw;
+}
+// %の取得
+@function get_per($size, $parent: var(--base-size)) {
+	@return calc(#{$size} / #{$parent} * 100%);
+}
+//remの取得
+@function rem($px) {
+	@return ($px / 16) * 1rem;
+}
+
+@function strip-unit($number) {
+	@if type-of($number) == 'number' and not unitless($number) {
+		@return $number / ($number * 0 + 1);
+	}
+	@return $number;
+}
+
+@mixin fluid-type($properties, $min-value, $max-value) {
+	@each $property in $properties {
+		#{$property}: $min-value;
+	}
+
+	@media (min-width: $min-vw) {
+		@each $property in $properties {
+			#{$property}: calc(
+				#{$min-value} +
+					#{strip-unit($max-value - $min-value)} *
+					(100vw - #{$min-vw}) /
+					#{strip-unit($max-vw - $min-vw)}
+			);
+		}
+	}
+
+	@media (min-width: $max-vw) {
+		@each $property in $properties {
+			#{$property}: #{get_vw(strip-unit($max-value))};
+		}
+	}
+}
